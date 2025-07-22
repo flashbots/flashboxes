@@ -7,6 +7,9 @@ set -euxo pipefail
 mkosi-chroot useradd -m -d /home/searcher -s /usr/bin/searchersh -u 1000 searcher
 mkosi-chroot groupadd -r eth
 mkosi-chroot useradd -r -s /bin/false -G eth lighthouse
+mkosi-chroot groupadd -r lighthouse-logs
+mkosi-chroot useradd -r -s /bin/false -G lighthouse-logs lighthouse-logs
+mkosi-chroot usermod -a -G lighthouse-logs searcher
 
 
 # Set up sudo permissions for searcher
@@ -37,6 +40,7 @@ for service in \
     dropbear.service \
     lighthouse.service \
     searcher-container.service \
+    lighthouse-log-forwarder.service \
     ssh-pubkey-server.service \
     cvm-reverse-proxy.service
 do

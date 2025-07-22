@@ -1,0 +1,19 @@
+[Unit]
+Description=Lighthouse Log Forwarder for Searcher Access
+After=lighthouse.service
+Requires=lighthouse.service
+
+[Service]
+Type=simple
+User=lighthouse-logs
+Group=lighthouse-logs
+ExecStartPre=/bin/mkdir -p /run/lighthouse_logs
+ExecStartPre=/bin/chown lighthouse-logs:lighthouse-logs /run/lighthouse_logs
+ExecStart=/bin/sh -c "journalctl -f -u lighthouse.service --no-hostname --output=short-iso | tee /run/lighthouse_logs/current.log"
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=minimal.target
