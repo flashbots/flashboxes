@@ -6,12 +6,14 @@ Using Intel TDX, Flashbots has built a way for searchers to trustlessly backrun 
 - [TDX Mental Model](#tdx-mental-model)
 - [Image Overview](#image-overview)
 - [Firewall Rules](#firewall-rules)
+- [Machine Specs and Cost](#machine-specs-and-cost)
+- [Attestation Walkthrough](#attestation-walkthrough)
 - [Order Flow APIs](#order-flow-apis)
   - [Flashbots Protect](#searching-on-flashbots-protect-transactions)
   - [Titan Builder](#searching-on-titan-builders-bottom-of-block)
 - [Disk Persistence](#disk-persistence)
-- [Service Order](#service-order)
-- [Testing](#testing)
+- [Searcher Commands and Services](#searcher-commands-and-services)
+- [Developer Notes](#developer-notes)
 
 TDX Mental Model
 ------------------------
@@ -522,7 +524,7 @@ Then, using the dropbear SSH port, searchers initialize or decrypt an existing d
 ssh -i /path/to/.ssh/id_ed25519 searcher@<machine IP> initialize
 ```
 
-Searcher Commands
+Searcher Commands and Services
 ---
 On the first login after deployment or image upgrade, remember to initialize and decrypt the persistent disk. 
 ```
@@ -572,9 +574,6 @@ geth --datadir /persistent \
 tail -f /var/log/lighthouse.log
 ```
 
-Searcher Systemd Services
----
-
 ### **lighthouse**
 
 Lighthouse is run on the host with the following configuration: 
@@ -594,17 +593,19 @@ Lighthouse is run on the host with the following configuration:
 
 The image is configured to automatically delete logs that are more than 5 days old to limit resource usage. How it works:
 
-- Logs written to /var/log/searcher/test.log will be rotated daily. The test.log file will be cleared and a new compressed file will appear in the same folder.
+- Any file ending in `.log` in `/var/log/searcher/` (which maps to `/persistent/searcher_logs/` on the host) will be rotated daily. Log files are truncated and compressed copies are kept for 5 days.
     
     ```bash
     root@6d9ced6e8a16:~# ls /var/log/searcher
-    test.log  test.log-20250127.gz
+    bob.log  bob.log-20250127.gz  
     ```
     
-- Note that the delayed log file, which the ssh command reads from, is also being rotated daily. This means you will only be able to see the logs from the last day outside of the machine.
+- The delayed log file (`/persistent/delayed_logs/output.log`) that searchers read via SSH commands is also rotated daily, meaning you can only see logs from the current day when accessing them externally.
 
-Service Order
+Developer Notes
 -------------
+
+### Service Order
 
 1. Initialize network (**name:** `network-setup.service`)
 2. Get searcher key from LUKS partition or wait for key on port 8080 (**name:** `wait-for-key.service`) (**after:** `network-setup.service`)
@@ -617,8 +618,7 @@ Service Order
 9. SSH pubkey server (**name:** `ssh-pubkey-server.service`) (**after:** `searcher-container.service`)
 10. CVM reverse proxy for SSH pubkey server (**name:** `cvm-reverse-proxy.service`) (**after:** `ssh-pubkey-server.service`)
 
-Developer Testing
--------
+### Testing
 
 ```shell
 ssh-keygen -t ed25519
