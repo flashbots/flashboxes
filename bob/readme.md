@@ -37,7 +37,7 @@ There are three key features of the image:
 
 Together, they provide the “no-frontrunning” guarantee to order flow providers while balancing searcher bot visibility and maintenance.
 
-![image](https://github.com/user-attachments/assets/9f84af6d-e03a-4210-b81a-370e252a1e8b)
+<img alt="tee-searcher" src="https://github.com/user-attachments/assets/f66239e6-1a89-4b7e-a14b-0727f14aca45" />
 
 - The image will provide one rootless podman container running Ubuntu 24.04 that installs and runs OpenSSH with only the searcher’s SSH public key added to the `authorized_keys` file. The searcher will upload and manage their bot here, which typically contains a modified geth node.
 - There are two modes — production and maintenance — with the following [firewall rules](#firewall-rules). During production mode, SSH connection to the container is cut, and transaction streaming begins. When searchers need to fix their bot, searchers can switch to maintenance mode, and the SSH connection is restored after a 5 minute delay.
@@ -56,7 +56,7 @@ To recap, searchers have two access points to the machine, both via SSH:
 
 Firewall Rules
 ------------------------
-![image](https://github.com/user-attachments/assets/036fa1f0-f878-49bf-bb50-4965fb21bbaa)
+<img alt="tee-searcher-networking" src="https://github.com/user-attachments/assets/9700ef16-eeed-46a8-90eb-0d4065957907" />
 
 **IMPORTANT: Searchers, you will not have DNS access during production mode!** 
 
@@ -200,12 +200,12 @@ Under the hood, Intel TDX attestation relies on a process called measured-boot.
     
 [Measured boot]((https://docs.edgeless.systems/constellation/2.10/architecture/images#measured-boot)) uses a Trusted Platform Module (TPM) to measure every part of the boot process:
 
-![[https://docs.edgeless.systems/constellation/2.10/architecture/images#measured-boot](https://docs.edgeless.systems/constellation/2.10/architecture/images#measured-boot)](Bob%20V2%20Image%20Guide%201506b4a0d87680b2979de36288b48d9a/Screenshot_2024-08-08_at_2.45.06_AM.png)
+<img alt="edgeless-measured-boot" src="https://github.com/user-attachments/assets/ac1e4568-47a4-4eb5-8b57-eefe91141a24" />
 *[https://docs.edgeless.systems/constellation/2.10/architecture/images#measured-boot](https://docs.edgeless.systems/constellation/2.10/architecture/images#measured-boot)*
 
 Azure’s vTPM “hash-chains” each stage of the boot process, ensuring the integrity of the entire boot chain up to the root file system. 
 
-![[https://learn.microsoft.com/en-us/azure/security/fundamentals/measured-boot-host-attestation#measured-boot](https://learn.microsoft.com/en-us/azure/security/fundamentals/measured-boot-host-attestation#measured-boot)](Bob%20V2%20Image%20Guide%201506b4a0d87680b2979de36288b48d9a/Untitled.png)
+<img alt="azure-measured-boot" src="https://github.com/user-attachments/assets/1faabc57-3dd8-4630-9932-f6c5441a722c" />
 
 *[https://learn.microsoft.com/en-us/azure/security/fundamentals/measured-boot-host-attestation#measured-boot](https://learn.microsoft.com/en-us/azure/security/fundamentals/measured-boot-host-attestation#measured-boot)*
 
