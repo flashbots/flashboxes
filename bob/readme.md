@@ -201,6 +201,7 @@ Under the hood, Intel TDX attestation relies on a process called measured-boot.
 [Measured boot]((https://docs.edgeless.systems/constellation/2.10/architecture/images#measured-boot)) uses a Trusted Platform Module (TPM) to measure every part of the boot process:
 
 <img alt="edgeless-measured-boot" src="https://github.com/user-attachments/assets/ac1e4568-47a4-4eb5-8b57-eefe91141a24" />
+
 *[https://docs.edgeless.systems/constellation/2.10/architecture/images#measured-boot](https://docs.edgeless.systems/constellation/2.10/architecture/images#measured-boot)*
 
 Azure’s vTPM “hash-chains” each stage of the boot process, ensuring the integrity of the entire boot chain up to the root file system. 
