@@ -56,7 +56,7 @@ To recap, searchers have two access points to the machine, both via SSH:
 
 Firewall Rules
 ------------------------
-<img alt="tee-searcher-networking" src="https://github.com/user-attachments/assets/9700ef16-eeed-46a8-90eb-0d4065957907" />
+<img alt="tee-searcher-networking" src="https://github.com/user-attachments/assets/8dd72ece-44de-4907-9d2d-1dd32b7c1468" />
 
 **IMPORTANT: Searchers, you will not have DNS access during production mode!** 
 
