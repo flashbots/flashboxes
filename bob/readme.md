@@ -228,7 +228,7 @@ go build
 ```
 
 <details>
-<summary>Sample Output</summary>
+<summary>Example Output</summary>
     
     ```
     ubuntu@schmangelina-bob-mkosi-builder:~/searcher/flashbots-images/measured-boot$ ./measured-boot /home/ubuntu/searcher/flashbots-images/build/tdx-debian-azure.efi output.json --direct-uki
@@ -312,7 +312,7 @@ git clone https://github.com/flashbots/ssh-pubkey-server
 ```
 
 <details>
-<summary>Sample Output</summary>
+<summary>Example Output</summary>
 
     ```bash
     # successful attestation
@@ -396,7 +396,7 @@ Use the `eth_subscribe` method to subscribe to state diffs:
 
 You'll start receiving state diffs:
 
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "eth_subscription",
@@ -421,7 +421,7 @@ You'll start receiving state diffs:
 }
 ```
 <details>
-<summary>Sample Output</summary>
+<summary>Example Output</summary>
     
     ```json
     2024-12-03 23:46:27,370 - __main__ - INFO - Initializing WebSocket connection to ws://127.0.0.1:8547
@@ -480,7 +480,7 @@ https://fbtee.titanbuilder.xyz:1338
 
 Use the `eth_sendBobBundle` method to submit bundles:
 
-```json
+```
 {
   "jsonrpc": "2.0",
   "id": 1,
