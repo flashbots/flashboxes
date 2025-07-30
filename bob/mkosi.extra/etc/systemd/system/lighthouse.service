@@ -10,6 +10,7 @@ Group=eth
 ExecStartPre=+/usr/bin/lighthouse-init
 ExecStartPre=+/bin/mkdir -p /persistent/lighthouse_logs
 ExecStartPre=+/bin/chown lighthouse:eth /persistent/lighthouse_logs
+ExecStartPre=+/bin/chmod 755 /persistent/lighthouse_logs
 ExecStart=/usr/bin/lighthouse bn \
 		--network mainnet \
 		--execution-endpoint http://localhost:8551 \
