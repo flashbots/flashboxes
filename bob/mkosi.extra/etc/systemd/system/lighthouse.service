@@ -8,6 +8,8 @@ Type=exec
 User=lighthouse
 Group=eth
 ExecStartPre=+/usr/bin/lighthouse-init
+ExecStartPre=/bin/mkdir -p /persistent/lighthouse_logs
+ExecStartPre=/bin/chown lighthouse:eth /persistent/lighthouse_logs
 ExecStart=/usr/bin/lighthouse bn \
 		--network mainnet \
 		--execution-endpoint http://localhost:8551 \
@@ -16,7 +18,12 @@ ExecStart=/usr/bin/lighthouse bn \
 		--disable-deposit-contract-sync \
 		--datadir "/persistent/lighthouse" \
         --disable-optimistic-finalized-sync \
-        --disable-quic
+        --disable-quic \
+        --logfile-dir /persistent/lighthouse_logs \
+        --logfile-format JSON \
+        --logfile-debug-level debug \
+        --logfile-max-number 5 \
+        --logfile-max-size 100
 Restart=on-failure
 RestartSec=10
 StandardOutput=journal

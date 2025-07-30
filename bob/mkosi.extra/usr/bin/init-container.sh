@@ -20,6 +20,7 @@ su -s /bin/sh searcher -c "cd ~ && podman run -d \
     -v /persistent/searcher:/persistent:rw \
     -v /etc/searcher/ssh_hostkey:/etc/searcher/ssh_hostkey:rw \
     -v /persistent/searcher_logs:/var/log/searcher:rw \
+    -v /persistent/lighthouse_logs:/var/log/lighthouse:ro \
     -v /tmp/jwt.hex:/secrets/jwt.hex:ro \
     docker.io/library/ubuntu:24.04 \
     /bin/sh -c ' \
