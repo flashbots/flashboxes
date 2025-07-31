@@ -24,7 +24,8 @@ ExecStart=/usr/bin/lighthouse bn \
         --logfile-format JSON \
         --logfile-debug-level debug \
         --logfile-max-number 5 \
-        --logfile-max-size 100
+        --logfile-max-size 100 \
+		--logfile-no-restricted-perms
 Restart=on-failure
 RestartSec=10
 StandardOutput=journal
