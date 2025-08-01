@@ -187,7 +187,7 @@ int main(int argc, char *argv[]) {
     }
 
     // If we reach here, the command didn't match any of the valid commands
-    fprintf(stderr, "Invalid command. Valid commands are: toggle, status, logs, restart-lighthouse, initialize\n");
+    fprintf(stderr, "Invalid command. Valid commands are: toggle, status, logs, tail-the-logs, restart-lighthouse, initialize\n");
     free(arg_copy); // Clean up allocated memory
     return 1;       // Return error code 1
 }
