@@ -37,7 +37,7 @@ There are three key features of the image:
 
 Together, they provide the “no-frontrunning” guarantee to order flow providers while balancing searcher bot visibility and maintenance.
 
-<img alt="tee-searcher" src="https://github.com/user-attachments/assets/f66239e6-1a89-4b7e-a14b-0727f14aca45" />
+<img alt="tee-searcher" src="https://github.com/user-attachments/assets/de71d2ab-5a99-4ade-a9d9-cececd987e70" />
 
 - The image will provide one rootless podman container running Ubuntu 24.04 that installs and runs OpenSSH with only the searcher’s SSH public key added to the `authorized_keys` file. The searcher will upload and manage their bot here, which typically contains a modified geth node.
 - There are two modes — production and maintenance — with the following [firewall rules](#firewall-rules). During production mode, SSH connection to the container is cut, and transaction streaming begins. When searchers need to fix their bot, searchers can switch to maintenance mode, and the SSH connection is restored after a 5 minute delay.
