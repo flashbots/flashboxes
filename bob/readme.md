@@ -543,6 +543,12 @@ ssh searcher@<machine ip> status
 
 # print out last 100 logs from today
 ssh searcher@<machine ip> logs 100
+
+# tail the logs
+ssh searcher@<machine ip> tail-the-logs
+
+# restart lighthouse on the host
+ssh searcher@<machine ip> restart-lighthouse
 ```
 
 The data plane is served on port 10022, where searchers can SSH inside their rootless podman container to configure their bot.
@@ -572,7 +578,7 @@ geth --datadir /persistent \
   --syncmode snap \
 
 # view lighthouse logs
-tail -f /var/log/lighthouse.log
+tail -f /var/log/lighthouse/beacon.log
 ```
 
 ### **lighthouse**
