@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
     if (command == NULL) {
         // If there's no token at all (e.g., empty or whitespace-only string),
         // we print an error and quit.
-        fprintf(stderr, "No command provided. Valid commands are: toggle, status, logs, tail-the-logs,restart-lighthouse, initialize\n");
+        fprintf(stderr, "No command provided. Valid commands are: toggle, status, logs, tail-the-logs, restart-lighthouse, initialize\n");
         free(arg_copy); // free the memory
         return 1;       // return error code 1
     }
